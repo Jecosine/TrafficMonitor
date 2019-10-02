@@ -19,3 +19,11 @@ def get_args():
             return False
         else:
             return True
+
+def mainprocess():
+    _ = get_args()
+    if not _:
+        return
+    record_video(dev, fps, time, output)
+
+
