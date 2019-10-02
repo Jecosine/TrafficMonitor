@@ -48,4 +48,5 @@ def mainprocess():
         return
     record_video(dev, fps, time, output)
 
-
+if __name__ == "__main__":
+    mainprocess()
