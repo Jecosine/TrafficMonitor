@@ -25,10 +25,23 @@ def record_video(dev, fps, time, output):
     #6 -> height
     #7 -> fps
     _, frame = cap.read()
-    ou
+    fourcc = cv2.VideoWriter_fourcc("M","P","E","G")
+    out = cv2.VideoWriter("output.mp4", fourcc, 24, (640, 480))
     count = 0
-    while(_, count < time):
-        frame = 
+    frame_list = []
+    while(_):
+        _, frame = cap.read()
+        count += 1
+        cv2.show("frame", frame)
+        if count > time:
+            frame_list.pop(0)
+        frame_list.append(frame)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            cap.release()
+            break
+    for i in frame_list:
+        out.write(i)
+    out.release()
 def mainprocess():
     _ = get_args()
     if not _:
