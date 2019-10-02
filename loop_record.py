@@ -21,7 +21,14 @@ def get_args():
             return True
 def record_video(dev, fps, time, output):
     cap = cv2.VideoCapture(dev)
-
+    #5 -> width
+    #6 -> height
+    #7 -> fps
+    _, frame = cap.read()
+    ou
+    count = 0
+    while(_, count < time):
+        frame = 
 def mainprocess():
     _ = get_args()
     if not _:
