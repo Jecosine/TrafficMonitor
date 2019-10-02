@@ -19,6 +19,8 @@ def get_args():
             return False
         else:
             return True
+def record_video(dev, fps, time, output):
+    cap = cv2.VideoCapture(dev)
 
 def mainprocess():
     _ = get_args()
