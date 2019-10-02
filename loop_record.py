@@ -5,7 +5,7 @@ import sys
 # usage: loop_record.py [dev] [fps] [time(s)] [output]
 def get_args():
     args = sys.argv[1:]
-    if len(args) <> 4:
+    if len(args) != 4:
         print("usage : loop_record.py [dev] [fps] [time(s)] [output]")
         return False
     else:
@@ -13,12 +13,12 @@ def get_args():
         try:
             dev = int(dev)
             fps = int(fps)
-            time = fps * int(time)
+            t = fps * int(t)
         except Exception as e:
             print("Invalid arg occurs error {0}".format(e))
             return False
         else:
-            return True
+            return dev, fps, t,output
 def record_video(dev, fps, time, output):
     cap = cv2.VideoCapture(dev)
     #5 -> width
@@ -32,7 +32,7 @@ def record_video(dev, fps, time, output):
     while(_):
         _, frame = cap.read()
         count += 1
-        cv2.show("frame", frame)
+        # cv2.imshow("frame", frame)
         if count > time:
             frame_list.pop(0)
         frame_list.append(frame)
@@ -46,6 +46,7 @@ def mainprocess():
     _ = get_args()
     if not _:
         return
+    dev, fps, time, output = _
     record_video(dev, fps, time, output)
 
 if __name__ == "__main__":
