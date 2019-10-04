@@ -1,5 +1,5 @@
 # TODOS
 
--[] Data achitecture
--[] Website Framework
--[] Mini Program
+- [ ] Data achitecture
+- [ ] Website Framework
+- [ ] Mini Program
