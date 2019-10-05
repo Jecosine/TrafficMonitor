@@ -42,11 +42,12 @@
     line-height: 60px;
     border-bottom: solid 10px rgba(0,0,0,0);
     text-align: center;
-    color: #707070;
+    
     font-size: 20px;
 }
 .navi-item > a {
-    color: #414141;
+    color: #5D5D5D;
+    /* color: #414141; */
     text-decoration: none;
 }
 .navi-item:hover {
@@ -71,3 +72,54 @@
 #navi-admin:hover {
     background-color: rgba(255, 196, 0, 0.815);
 }
+#main-container {
+    position: absolute;
+    top: 60px;
+    width: 100%;
+    min-height: 300px;
+}
+#main-wrap {
+    position: relative;
+    width: calc(100% - 200px);
+    margin-left: 100px;
+    margin-top: 30px;
+}
+#menu-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #FFC400;
+
+}
+#menu-container:hover {
+    background-color: rgba(255, 196, 0, 0.815);
+    cursor: pointer;
+}
+#menu-icon {
+    display: inline-block;
+    margin: auto 0;
+    width: 24px;
+    height: 20px;
+    background-image: url(../images/menu@2x.png);
+    background-size: contain;
+}
+#status-container {
+    position: relative;
+    width: calc(100% - 100px);
+    min-height: 200px;
+    margin-left: 100px;
+
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.034);
+}
+#status-wrap {
+    width: calc(100% - 12px);
+    height: 200px;
+    border-left: solid 6px #FFC400;
+    border-right: solid 6px #FFC400;
+    /* border-top: solid 1px #FFC400;
+    border-bottom: solid 1px #FFC400; */
+}   
