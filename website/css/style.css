@@ -113,7 +113,7 @@
     min-height: 200px;
     margin-left: 100px;
 
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.034);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.16);
 }
 #status-wrap {
     width: calc(100% - 12px);
