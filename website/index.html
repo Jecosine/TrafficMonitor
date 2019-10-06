@@ -77,16 +77,18 @@ var oneDay = 24 * 3600 * 1000;
 var date = [];
 
 var data = [Math.random() * 150];
+var data2 = [Math.random() * 150];
 var now = new Date(base);
 
 function addData(shift) {
     now = [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/');
     date.push(now);
     data.push((Math.random() - 0.4) * 10 + data[data.length - 1]);
-
+    data2.push((Math.random() - 0.4) * 10 + data[data.length - 1]);
     if (shift) {
         date.shift();
         data.shift();
+        data2.shift();
     }
 
     now = new Date(+new Date(now) + oneDay);
@@ -97,26 +99,65 @@ for (var i = 1; i < 100; i++) {
 }
 var myChart = echarts.init(document.getElementById("chart-main"));
 var option = {
+    legend: {
+        data: ['pi-camera', 'test.mp4'],
+        textStyle: {
+            fontFamily: 'SAO UI',
+            fontSize: 18
+        }
+    },
     xAxis: {
+        axisLabel: {
+            fontFamily: 'SAO UI'
+        },
         type: 'category',
         boundaryGap: false,
         data: date
+
+    },
+    tooltip: {
+        trigger: 'axis',
+        textStyle: {
+            fontFamily: 'SAO UI',
+            fontSize: 18
+        }
     },
     yAxis: {
+        axisLabel: {
+            fontFamily: 'SAO UI'
+        },
         boundaryGap: [0, '50%'],
         type: 'value'
     },
     series: [
         {
-            name:'成交',
+            name:'pi-camera',
+            type:'line',
+            smooth: false,
+            symbol: 'none',
+            stack: 'a',
+            // areaStyle: {
+            //     normal: {
+            //         color: '#000'
+            //     }
+               
+            // },
+            data: data
+        },
+        {
+            name:'test.mp4',
             type:'line',
             smooth:true,
             symbol: 'none',
             stack: 'a',
-            areaStyle: {
-                normal: {}
-            },
-            data: data
+            // areaStyle: {
+            //     normal: {
+            //         color: '#00ff00'
+            //     }
+                
+                
+            // },
+            data: data2
         }
     ]
 };
@@ -128,9 +169,14 @@ setInterval(function () {
             data: date
         },
         series: [{
-            name:'成交',
+            name:'pi-camera',
             data: data
-        }]
+        },
+        {
+            name:'test.mp4',
+            data: data2
+        }
+        ]
     });
 }, 500);
             // var rtChart = echarts.init(document.getElementById("chart-main"));
