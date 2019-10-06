@@ -25,23 +25,37 @@
                 <div id="menu-container">
                     <div id="menu-icon"></div>
                 </div>
+                <div class="part-title">INPUT</div>
                 <div id="input-container">
+                    
                     <div id="input-wrap">
-                        <div class="part-title">INPUT</div>
+                        
                         <table id="input-table">
-                            <th>
-                                <td class="tb-head">Index</td>
-                                <td class="tb-head">Source</td>
-                                <td class="tb-head">Type</td>
-                                <td class="tb-head">Flow(p/s)</td>
-                                <td class="tb-head">Status</td>
-                            </th>
-                            <tr>
-                                <td class="tb-head">Index</td>
-                                <td class="tb-head">Index</td>
-                                <td class="tb-head">Index</td>
-                                <td class="tb-head">Index</td>
-                                <td class="tb-head">Index</td>
+                            <thead>
+                                <th class="tb-head index">Index</th>
+                                <th class="tb-head source">Source</th>
+                                <th class="tb-head">Type</th>
+                                <th class="tb-head">Flow(p/s)</th>
+                                <th class="tb-head">Peak</th>
+                                <th class="tb-head status">Status</th>
+                                <th class="tb-head">Details</th>
+                               
+                            </thead>
+                            <tr data-input-index=1>
+                                <td class="tb-item index">1</td>
+                                <td class="tb-item source">pi-camera</td>
+                                <td class="tb-item">realtime</td>
+                                <td class="tb-item">4</td>
+                                <td class="tb-item">14</td>
+                                <td class="tb-item status red">Stopped</td>
+                            </tr>
+                            <tr data-input-index=2>
+                                <td class="tb-item index">1</td>
+                                <td class="tb-item source">test1.mp4</td>
+                                <td class="tb-item">local</td>
+                                <td class="tb-item">8</td>
+                                <td class="tb-item">12</td>
+                                <td class="tb-item green status">Tracking</td>
                             </tr>
                         </table>
                     </div>
