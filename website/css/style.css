@@ -149,6 +149,7 @@
     text-align: left;
     line-height: 40px;
     border-bottom: solid 1px rgb(207, 207, 207);
+    vertical-align: middle;
 }
 .green {
     color: green;
@@ -164,4 +165,12 @@
 }
 .source {
     width: 180px;
+}
+
+.input-detail-icon {
+
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #FFC400;
 }
