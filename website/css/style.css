@@ -118,7 +118,7 @@
 }
 .section-wrap {
     width: calc(100% - 12px);
-    height: 200px;
+    min-height: 200px;
     margin-top: 10px;
     border-left: solid 6px #FFC400;
     border-right: solid 6px #FFC400;
@@ -189,4 +189,8 @@
 .input-detail-container:hover {
     background-color: rgba(255, 196, 0, 0.692);
     cursor: pointer;
+}
+#chart-main {
+    width: 100%;
+    min-height: 400px;
 }
