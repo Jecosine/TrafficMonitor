@@ -90,9 +90,19 @@
                     data: [5, 20, 36, 10, 10, 20]
                 }]
             };
-
-            // 使用刚指定的配置项和数据显示图表。
             rtChart.setOption(option);
+            var int = setInterval(function(){
+                var newoption = {
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name: '销量',
+                        data: [Math.floor(Math.random()*30),Math.floor(Math.random()*30),Math.floor(Math.random()*30),Math.floor(Math.random()*30),Math.floor(Math.random()*30),Math.floor(Math.random()*30)]
+                    }]
+                };
+                rtChart.setOption(newoption);
+            }, 1000);
+            // 使用刚指定的配置项和数据显示图表。
+            
         </script>
     </body>
 </html>
