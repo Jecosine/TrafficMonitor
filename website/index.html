@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <link rel="stylesheet" href="css/style.css" >
         <link rel="stylesheet" href="css/font-awesome.min.css" >
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.3.0/echarts.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.3.0/echarts.js"></script>
     </head>
     <body>
         <div id="navigation-container">
@@ -71,37 +71,99 @@
             </div>            
         </div>
         <script>
-            var rtChart = echarts.init(document.getElementById("chart-main"));
-            var option = {
-                title: {
-                    text: ''
-                },
-                tooltip: {},
-                legend: {
-                    data:['销量']
-                },
-                xAxis: {
-                    data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-                },
-                yAxis: {},
-                series: [{
-                    name: '销量',
-                    type: 'bar',
-                    data: [5, 20, 36, 10, 10, 20]
-                }]
-            };
-            rtChart.setOption(option);
-            var int = setInterval(function(){
-                var newoption = {
-                    series: [{
-                        // 根据名字对应到相应的系列
-                        name: '销量',
-                        data: [Math.floor(Math.random()*30),Math.floor(Math.random()*30),Math.floor(Math.random()*30),Math.floor(Math.random()*30),Math.floor(Math.random()*30),Math.floor(Math.random()*30)]
-                    }]
-                };
-                rtChart.setOption(newoption);
-            }, 1000);
-            // 使用刚指定的配置项和数据显示图表。
+
+var base = +new Date(2014, 9, 3);
+var oneDay = 24 * 3600 * 1000;
+var date = [];
+
+var data = [Math.random() * 150];
+var now = new Date(base);
+
+function addData(shift) {
+    now = [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/');
+    date.push(now);
+    data.push((Math.random() - 0.4) * 10 + data[data.length - 1]);
+
+    if (shift) {
+        date.shift();
+        data.shift();
+    }
+
+    now = new Date(+new Date(now) + oneDay);
+}
+
+for (var i = 1; i < 100; i++) {
+    addData();
+}
+var myChart = echarts.init(document.getElementById("chart-main"));
+var option = {
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: date
+    },
+    yAxis: {
+        boundaryGap: [0, '50%'],
+        type: 'value'
+    },
+    series: [
+        {
+            name:'成交',
+            type:'line',
+            smooth:true,
+            symbol: 'none',
+            stack: 'a',
+            areaStyle: {
+                normal: {}
+            },
+            data: data
+        }
+    ]
+};
+myChart.setOption(option);
+setInterval(function () {
+    addData(true);
+    myChart.setOption({
+        xAxis: {
+            data: date
+        },
+        series: [{
+            name:'成交',
+            data: data
+        }]
+    });
+}, 500);
+            // var rtChart = echarts.init(document.getElementById("chart-main"));
+            // var option = {
+            //     title: {
+            //         text: ''
+            //     },
+            //     tooltip: {},
+            //     legend: {
+            //         data:['销量']
+            //     },
+            //     xAxis: {
+            //         data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+            //     },
+            //     yAxis: {},
+            //     series: [{
+            //         name: '销量',
+            //         type: 'bar',
+            //         data: [5, 20, 36, 10, 10, 20]
+            //     }]
+            // };
+            // rtChart.setOption(option);
+            // var int = setInterval(function(){
+            //     var newoption = {
+            //         series: [{
+            //             // 根据名字对应到相应的系列
+            //             name: '销量',
+            //             data: [Math.floor(Math.random()*30),Math.floor(Math.random()*30),Math.floor(Math.random()*30),Math.floor(Math.random()*30),Math.floor(Math.random()*30),Math.floor(Math.random()*30)]
+            //         }]
+            //     };
+            //     rtChart.setOption(newoption);
+            // }, 1000);
+            // // 使用刚指定的配置项和数据显示图表。
             
         </script>
     </body>
