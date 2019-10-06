@@ -4,6 +4,7 @@
         <meta charset="utf-8" />
         <link rel="stylesheet" href="css/style.css" >
         <link rel="stylesheet" href="css/font-awesome.min.css" >
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.3.0/echarts.min.js"></script>
     </head>
     <body>
         <div id="navigation-container">
@@ -63,9 +64,15 @@
                 </div>
                 <div class="part-title">CURVES</div>
                 <div id="chart-container" class="section-container">
-                    <div id="chart-wrap" class="section-wrap"></div>
+                    <div id="chart-wrap" class="section-wrap">
+                        <div id="chart-main"></div>
+                    </div>
                 </div>
             </div>            
         </div>
+        <script>
+            var rtChart = echarts.init(document.getElementById("chart-main"));
+            
+        </script>
     </body>
 </html>
