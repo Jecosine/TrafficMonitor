@@ -77,6 +77,8 @@
     top: 60px;
     width: 100%;
     min-height: 300px;
+    /* background: url(../images/bg@2x.png);
+    background-size: contain; */
 }
 #main-wrap {
     position: relative;
