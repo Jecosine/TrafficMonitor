@@ -23,7 +23,7 @@
         </div>
         <div id="main-container">
             <div id="main-wrap">
-                <div id="menu-container">
+                <div id="menu-container" data-banana="11">
                     <div id="menu-icon"></div>
                 </div>
                 <div class="part-title">INPUT</div>
@@ -45,17 +45,17 @@
                                 <td class="tb-item index">1</td>
                                 <td class="tb-item source">pi-camera</td>
                                 <td class="tb-item">realtime</td>
-                                <td class="tb-item">4</td>
-                                <td class="tb-item">14</td>
-                                <td class="tb-item status red">Stopped</td>
+                                <td class="tb-item flow">4</td>
+                                <td class="tb-item peak">14</td>
+                                <td class="tb-item status red">Tracking</td>
                                 <td class="tb-item"><div class="input-detail-container"><div class="input-detail-icon"></div></div></td>
                             </tr>
                             <tr data-input-index=2>
                                 <td class="tb-item index">1</td>
                                 <td class="tb-item source">test1.mp4</td>
                                 <td class="tb-item">local</td>
-                                <td class="tb-item">8</td>
-                                <td class="tb-item">12</td>
+                                <td class="tb-item flow">8</td>
+                                <td class="tb-item peak">12</td>
                                 <td class="tb-item green status">Tracking</td>
                                 <td class="tb-item"><div class="input-detail-container"><div class="input-detail-icon"></div></div></td>
                             </tr>
@@ -72,31 +72,48 @@
         </div>
         <script>
 
-var base = +new Date(2014, 9, 3);
+var base = new Date();
 var oneDay = 24 * 3600 * 1000;
 var date = [];
 
 var data = [Math.random() * 150];
 var data2 = [Math.random() * 150];
-var now = new Date(base);
+var datas = [data, data2];
+var p = [-1, -1];
+var now = new Date();
+var input_table = document.getElementById("input-table");
+function asycData(){
+    flows = input_table.getElementsByClassName("flow");
+    peaks = input_table.getElementsByClassName("peak");
+    for(var i = 0; i < flows.length; i++){
+        var current = Math.floor(datas[i][datas[i].length - 1]);
+        flows[i].innerHTML = current.toString();
+        if (current > Number(peaks[i].innerHTML)){
+            peaks[i].innerHTML = current.toString();
 
+        }
+    }
+}
 function addData(shift) {
-    now = [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/');
+    now = [now.getHours(), now.getMinutes(), now.getSeconds()].join(':');
     date.push(now);
     data.push((Math.random() - 0.4) * 10 + data[data.length - 1]);
     data2.push((Math.random() - 0.4) * 10 + data[data.length - 1]);
+    asycData();
     if (shift) {
-        date.shift();
-        data.shift();
-        data2.shift();
+        if (date.length > 20){
+            date.shift();
+            data.shift();
+            data2.shift();
+        }
+
+        
     }
-
-    now = new Date(+new Date(now) + oneDay);
+    
 }
-
-for (var i = 1; i < 100; i++) {
-    addData();
-}
+// for (var i = 1; i < 100; i++) {
+//     addData();
+// }
 var myChart = echarts.init(document.getElementById("chart-main"));
 var option = {
     legend: {
@@ -126,7 +143,7 @@ var option = {
         axisLabel: {
             fontFamily: 'SAO UI'
         },
-        boundaryGap: [0, '50%'],
+        boundaryGap: false,
         type: 'value'
     },
     series: [
@@ -163,6 +180,7 @@ var option = {
 };
 myChart.setOption(option);
 setInterval(function () {
+    now = new Date();
     addData(true);
     myChart.setOption({
         xAxis: {
@@ -178,7 +196,7 @@ setInterval(function () {
         }
         ]
     });
-}, 500);
+}, 1000);
             // var rtChart = echarts.init(document.getElementById("chart-main"));
             // var option = {
             //     title: {
