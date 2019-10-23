@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="css/style.css" >
         <link rel="stylesheet" href="css/font-awesome.min.css" >
         <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.3.0/echarts.js"></script>
+        <script src="js/jquery-3.3.1.min.js"></script>
     </head>
     <body>
         <div id="navigation-container">
@@ -77,6 +78,99 @@
             </div>            
         </div>
         <script>
+            var date = [];
+            var mychart = echarts.init(document.getElementById("chart-main"));
+            mychart.setOption({
+                legend: {
+                    data: ['pi-camera', 'test.mp4'],
+                    textStyle: {
+                        fontFamily: 'SAO UI',
+                        fontSize: 18
+                    }
+                },
+                xAxis: {
+                    axisLabel: {
+                        fontFamily: 'SAO UI'
+                    },
+                    type: 'category',
+                    boundaryGap: false,
+                    data: []
+
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    textStyle: {
+                        fontFamily: 'SAO UI',
+                        fontSize: 18
+                    }
+                },
+                yAxis: {
+                    axisLabel: {
+                        fontFamily: 'SAO UI'
+                    },
+                    boundaryGap: false,
+                    type: 'value'
+                },
+                series: [
+                    {
+                        name:'pi-camera',
+                        type:'line',
+                        smooth: false,
+                        symbol: 'none',
+                        stack: 'a',
+                        // areaStyle: {
+                        //     normal: {
+                        //         color: '#000'
+                        //     }
+                        
+                        // },
+                        data: []
+                    },
+                    {
+                        name:'test.mp4',
+                        type:'line',
+                        smooth: false,
+                        symbol: 'none',
+                        stack: 'b',
+                        // areaStyle: {
+                        //     normal: {
+                        //         color: '#00ff00'
+                        //     }
+                            
+                            
+                        // },
+                        data: []
+                    }
+                ]
+            });
+            function updateTime(){
+                var now = new Date();
+                now = [now.getHours(), now.getMinutes(), now.getSeconds()].join(':');
+                if (date.length > 20){
+                    date.shift();
+                }
+                date.push(now);
+            }
+            setInterval(function(){
+                $.get("http://localhost/delive").done(function(data){
+
+                    console.log(data);
+                    updateTime();
+                    mychart.setOption({
+                        xAxis:{
+                            data: date
+                        },
+                        series: [{
+                            // 根据名字对应到相应的系列
+                            name: 'test.mp4',
+                            data: data.data
+                        }]      
+                    });
+                });
+            }, 1000);
+            
+        </script>
+        <!-- <script>
 
 var base = new Date();
 var oneDay = 24 * 3600 * 1000;
@@ -202,7 +296,7 @@ setInterval(function () {
         }
         ]
     });
-}, 1000);
+}, 1000); 
             // var rtChart = echarts.init(document.getElementById("chart-main"));
             // var option = {
             //     title: {
@@ -235,7 +329,7 @@ setInterval(function () {
             // }, 1000);
             // // 使用刚指定的配置项和数据显示图表。
             
-        </script>
+        </script>-->
         <!-- <div id="footer-container">
             <div id="footer-wrap">
                 
