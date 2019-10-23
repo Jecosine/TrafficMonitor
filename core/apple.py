@@ -40,8 +40,8 @@ def process(net):
             if confidence > 0.5:
                 cv.rectangle(frame, (xmin, ymin), (xmax, ymax), color=(0, 255, 0))
             
-        count += 1
-        print(count)
+        # count += 1
+        # print(count)
         cv.imshow("frame", frame)   
         if cv.waitKey(1) & 0xFF == ord('q'):
             cap.release()
